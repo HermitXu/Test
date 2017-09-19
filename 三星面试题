@@ -1,0 +1,59 @@
+package com.samsung.test;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 时间练习
+ * @author xuqiuyu
+ * @date 2017年9月16日
+ * @version 1.0
+ */
+public class DateTest {
+	
+	 static String HH1,MM1,SS1;
+	 static  String HH2,MM2,SS2;
+	
+	public static void main(String[] args) throws ParseException, IOException {
+		HH1 = "02"; 
+		MM1 = "45";
+		SS1 = "00";
+		
+		HH2 = "12"; 
+		MM2 = "45";
+		SS2 = "23";
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		Date d1 = sdf.parse(HH1+":"+ MM1 + ":" +SS1);
+		Date d2 = sdf.parse(HH2+":"+ MM2 + ":" +SS2);
+		int s1 = d1.getHours()*60*60+Integer.parseInt(MM1)*60+Integer.parseInt(SS1);
+		int s2 = d2.getHours()*60*60+Integer.parseInt(MM2)*60+Integer.parseInt(SS2);
+				
+		if(Integer.parseInt(HH1)<Integer.parseInt(HH2)){
+			System.out.println("1# " + (s2-s1));
+			System.out.println(d1);
+			System.out.println(d2);
+			FileOutputStream fos = new FileOutputStream("simple_input.txt");
+			int b;
+			fos.write(("1# " + (s2-s1)).getBytes());
+			fos.close();
+		}else{
+			System.out.println("1# "+ (24*60*60+(s2-s1)));
+			System.out.println(d1);
+			System.out.println(d2);
+			FileOutputStream fos = new FileOutputStream("simple_input.txt");
+			int b;
+			fos.write(("1# " + (24*60*60+(s2-s1))).getBytes());
+			fos.close();
+		}
+		
+		
+		
+	}
+	
+	
+}
